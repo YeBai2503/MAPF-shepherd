@@ -5,8 +5,8 @@ from utils import *
 # 智能体(羊)
 class Agent:
     def __init__(self, position):
-        self.position = np.array(position, dtype=float)
-        self.direction = np.random.randn(2)  # 初始随机速度
+        self.position = np.array(position, dtype=float) # 位置
+        self.direction = np.random.randn(2)  # 移动方向
         
     def update(self, agents, shepherd_pos):
         # 计算牧羊犬的距离
@@ -52,11 +52,11 @@ class Agent:
         attraction = normalize_vector(gcm - self.position)
         return attraction
     
-    # 牧羊犬排斥力计算
+    # 计算牧羊犬排斥力
     def _calculate_shepherd_repulsion(self, shepherd_pos):
         shepherd_repulsion = normalize_vector(self.position - shepherd_pos)
         return shepherd_repulsion
     
-    # 计算羊到一点的距离
+    # 计算羊与某一点的距离
     def distance(self, position):
         return np.linalg.norm(self.position - position)

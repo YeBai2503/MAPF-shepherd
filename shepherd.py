@@ -5,9 +5,9 @@ import agent
 # 牧羊犬 
 class Shepherd:
     def __init__(self):
-        self.position = np.array([L/4, 3*L/4])  # 初始位置
-        self.mode = 'driving'  # 初始模式为驱赶模式
-        self.direction = np.array([1, 0])  # 初始方向为右
+        self.position = np.array([L/4, 3*L/4])  # 位置（初始为地图左上方）
+        self.mode = 'driving'  # 行为模式（初始为驱赶）
+        self.direction = np.array([1, 0])  # 移动方向（初始为右）
         
     def update(self, agents):
         # 移动逻辑（含盲区检测）
@@ -31,12 +31,12 @@ class Shepherd:
         # 更新位置
         self.position += self.direction * v_s
 
-    # 计算驱赶模式的目标位置
+    # 计算驱赶模式的目标位置（Pd点）
     def _calculate_driving_position(self, gcm, N):
         direction_from_target = normalize_vector(gcm - TARGET)
         return gcm + direction_from_target * r_a * np.sqrt(N)
 
-    # 计算收集模式的目标位置
+    # 计算收集模式的目标位置（Pc点）
     def _calculate_collecting_position(self, gcm, agent_pos):
         direction_from_gcm = normalize_vector(agent_pos - gcm)
         return agent_pos + direction_from_gcm * r_a
