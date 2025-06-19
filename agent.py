@@ -34,12 +34,12 @@ class Agent:
 
     # 羊群排斥力计算
     def _calculate_repulsion(self, agents):
-        # 距离在r_a内的羊邻居
-        neighbors = get_neighbors_within_ra(self.position, agents)
+        # 距离在r_a内的羊邻居的索引
+        neighbors_index = get_neighbors_within_ra(self.position, agents)
         # 计算排斥力
         repulsion = np.zeros(2)
-        for neighbor in neighbors:
-            repulsion += normalize_vector(self.position - neighbor.position)
+        for neighbor_index in neighbors_index:
+            repulsion += normalize_vector(self.position - agents[neighbor_index].position)
         return normalize_vector(repulsion)
 
     # 计算向邻居质心的吸引力

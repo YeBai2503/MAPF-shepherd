@@ -2,9 +2,9 @@ from config import *
 from agent import Agent
 from shepherd import Shepherd
 from visualization import Visualizer
-import numpy as np
 from utils import calculate_gcm
 import time
+import numpy as np
 
 def main():
     start_time = time.time() # 记录开始时间
@@ -28,15 +28,19 @@ def main():
         # 更新羊群
         for agent in agents:
             agent.update(agents, shepherd.position)
+        # 向量化计算更新羊群
+        # vectorized_update(agents, shepherd.position)
+            
+        # 计算羊群质心
+        gcm = calculate_gcm(agents)
         
         # 更新牧羊犬
-        shepherd.update(agents)
+        shepherd.update(agents, gcm)
         
-        # 记录每一步状态
+        # 记录轨迹
         visualizer.record_step(agents, shepherd.position)
             
-        # 检查终止条件
-        gcm = calculate_gcm(agents)
+        # 检查是否完成
         if np.linalg.norm(gcm - TARGET) < TARGET_RADIUS:  # 检查全局质心与目标的距离
             success = True
             print(f"任务完成！步数: {step}")
@@ -46,10 +50,10 @@ def main():
     end_positions = [agent.position.copy() for agent in agents]
     
     # 输出运行时间
-    print(f"程序运行时间: {time.time() - start_time}s")
+    print(f"运行时间: {time.time() - start_time}s")
     
     # 生成效果图
-    filename = "2" # 文件名（后缀另外加）
+    filename = "result" # 文件名（后缀另外加）
     if success:
         # 静态轨迹图
         visualizer.plot_static_trajectories(start_positions, end_positions, filename + ".png")
@@ -58,7 +62,7 @@ def main():
         show_animation = input("————是否查看动画？(y/n): ").strip().lower() == 'y'
         if show_animation:
             # 采样率设置（加速生成）
-            total_frames = len(visualizer.agent_positions_history)
+            total_frames = len(visualizer.agent_positions_history) # 总帧数
             
             if total_frames > 500:
                 sample_rate = int(np.ceil(total_frames / 500))
