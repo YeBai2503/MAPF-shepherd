@@ -82,7 +82,7 @@ def analyze(data_array, title, unit=""):
     }
 
 def main():
-    times = 5 # 模拟次数
+    times = 100 # 模拟次数
     time_costs = [] # 时间
     step_costs = [] # 步数
     success_times = 0 # 成功次数
