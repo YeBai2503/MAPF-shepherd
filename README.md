@@ -29,7 +29,7 @@
 
 * 静态轨迹图
 
-![3](G:\code\project\MAPF_shepherd\results\50羊\原始参数结果\3.png)
+![3](results\50羊\原始参数结果\3.png)
 
 * GIF动图
 
