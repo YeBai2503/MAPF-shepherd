@@ -29,11 +29,11 @@
 
 * 静态轨迹图
 
-![3](..\results\50羊\原始参数结果\3.png)
+![3](./results/50羊/原始参数结果/3.png)
 
 * GIF动图
 
-![1](G:\code\project\MAPF_shepherd\results\100羊\改进后\1.gif)
+![1](./results/100羊/改进后/1.gif)
 
 * 频率条形统计图
 
