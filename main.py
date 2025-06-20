@@ -53,7 +53,7 @@ def main():
     print(f"运行时间: {time.time() - start_time}s")
     
     # 生成效果图
-    filename = "result" # 文件名（后缀另外加）
+    filename = "1" # 文件名（后缀另外加）
     if success:
         # 静态轨迹图
         visualizer.plot_static_trajectories(start_positions, end_positions, filename + ".png")

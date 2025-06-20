@@ -36,11 +36,11 @@ def get_neighbors(position, agents, n):
 
 # 返回距离在 r_a 内的邻居的索引（向量化计算优化版）
 def get_neighbors_within_ra(position, agents):
-    # 将所有羊的位置提取到一个NumPy数组中
+    # 所有羊的位置提到一个NumPy数组
     positions = np.array([a.position for a in agents])
     # 计算每个羊到指定羊的距离
     distances = np.linalg.norm(positions - position, axis=1)
-    # 返回距离小于r_a的邻居列表
+    # 返回距离小于r_a的邻居的索引
     return np.where(distances <= r_a)[0]
 
 
