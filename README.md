@@ -37,7 +37,7 @@
 
 * 频率条形统计图
 
-![Step_histogram](G:\code\project\MAPF_shepherd\results\50羊\原始参数结果\Step_histogram.png)
+![Step_histogram](./results/50羊/原始参数结果/Step_histogram.png)
 
 ## 参考文献
 
